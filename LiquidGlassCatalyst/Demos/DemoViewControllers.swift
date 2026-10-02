@@ -64,7 +64,7 @@ final class ButtonsDemoViewController: UIViewController, DemoPresentable {
 }
 
 @available(iOS 26.0, *)
-final class TintPlaygroundViewController: UIViewController, DemoPresentable {
+final class TintCatalystViewController: UIViewController, DemoPresentable {
     let demoTitle = "Tint & Style"
     let demoSubtitle = "Dial tint, style, and interactivity live"
     let demoSymbol = "paintpalette"

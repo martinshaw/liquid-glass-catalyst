@@ -9,6 +9,6 @@ build/
 *.dSYM.zip
 *.dSYM
 timeline.xctimeline
-playground.xcworkspace
+catalyst.xcworkspace
 .swiftpm/
 .DS_Store
