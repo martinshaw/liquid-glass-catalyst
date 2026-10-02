@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A10000000000000000000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* AppDelegate.swift */; };
 		A10000000000000000000002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* SceneDelegate.swift */; };
-		A10000000000000000000003 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* PlaygroundViewController.swift */; };
+		A10000000000000000000003 /* CatalystViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* CatalystViewController.swift */; };
 		A10000000000000000000004 /* AnimatedMeshBackdrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000004 /* AnimatedMeshBackdrop.swift */; };
 		A10000000000000000000005 /* GlassFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000005 /* GlassFactory.swift */; };
 		A10000000000000000000006 /* DraggableGlassBlob.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* DraggableGlassBlob.swift */; };
@@ -22,15 +22,15 @@
 /* Begin PBXFileReference section */
 		A20000000000000000000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A20000000000000000000002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A20000000000000000000003 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
+		A20000000000000000000003 /* CatalystViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalystViewController.swift; sourceTree = "<group>"; };
 		A20000000000000000000004 /* AnimatedMeshBackdrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedMeshBackdrop.swift; sourceTree = "<group>"; };
 		A20000000000000000000005 /* GlassFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassFactory.swift; sourceTree = "<group>"; };
 		A20000000000000000000006 /* DraggableGlassBlob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableGlassBlob.swift; sourceTree = "<group>"; };
 		A20000000000000000000007 /* DemoViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewControllers.swift; sourceTree = "<group>"; };
 		A20000000000000000000008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20000000000000000000009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2000000000000000000000A /* LiquidGlassPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiquidGlassPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2000000000000000000000B /* LiquidGlassPlayground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiquidGlassPlayground.entitlements; sourceTree = "<group>"; };
+		A2000000000000000000000A /* LiquidGlassCatalyst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiquidGlassCatalyst.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2000000000000000000000B /* LiquidGlassCatalyst.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiquidGlassCatalyst.entitlements; sourceTree = "<group>"; };
 		A2000000000000000000000C /* ControlsFidgetDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsFidgetDemoViewController.swift; sourceTree = "<group>"; };
 		A2000000000000000000000D /* BounceAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,30 +49,30 @@
 		A40000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				A40000000000000000000002 /* LiquidGlassPlayground */,
+				A40000000000000000000002 /* LiquidGlassCatalyst */,
 				A40000000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A40000000000000000000002 /* LiquidGlassPlayground */ = {
+		A40000000000000000000002 /* LiquidGlassCatalyst */ = {
 			isa = PBXGroup;
 			children = (
 				A20000000000000000000001 /* AppDelegate.swift */,
 				A20000000000000000000002 /* SceneDelegate.swift */,
-				A20000000000000000000003 /* PlaygroundViewController.swift */,
+				A20000000000000000000003 /* CatalystViewController.swift */,
 				A40000000000000000000004 /* Views */,
 				A40000000000000000000005 /* Demos */,
 				A20000000000000000000008 /* Assets.xcassets */,
 				A20000000000000000000009 /* Info.plist */,
-				A2000000000000000000000B /* LiquidGlassPlayground.entitlements */,
+				A2000000000000000000000B /* LiquidGlassCatalyst.entitlements */,
 			);
-			path = LiquidGlassPlayground;
+			path = LiquidGlassCatalyst;
 			sourceTree = "<group>";
 		};
 		A40000000000000000000003 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A2000000000000000000000A /* LiquidGlassPlayground.app */,
+				A2000000000000000000000A /* LiquidGlassCatalyst.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,9 +100,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A50000000000000000000001 /* LiquidGlassPlayground */ = {
+		A50000000000000000000001 /* LiquidGlassCatalyst */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A70000000000000000000003 /* Build configuration list for PBXNativeTarget "LiquidGlassPlayground" */;
+			buildConfigurationList = A70000000000000000000003 /* Build configuration list for PBXNativeTarget "LiquidGlassCatalyst" */;
 			buildPhases = (
 				A60000000000000000000001 /* Sources */,
 				A30000000000000000000001 /* Frameworks */,
@@ -112,9 +112,9 @@
 			);
 			dependencies = (
 			);
-			name = LiquidGlassPlayground;
-			productName = LiquidGlassPlayground;
-			productReference = A2000000000000000000000A /* LiquidGlassPlayground.app */;
+			name = LiquidGlassCatalyst;
+			productName = LiquidGlassCatalyst;
+			productReference = A2000000000000000000000A /* LiquidGlassCatalyst.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -132,7 +132,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A70000000000000000000001 /* Build configuration list for PBXProject "LiquidGlassPlayground" */;
+			buildConfigurationList = A70000000000000000000001 /* Build configuration list for PBXProject "LiquidGlassCatalyst" */;
 			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -145,7 +145,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A50000000000000000000001 /* LiquidGlassPlayground */,
+				A50000000000000000000001 /* LiquidGlassCatalyst */,
 			);
 		};
 /* End PBXProject section */
@@ -168,7 +168,7 @@
 			files = (
 				A10000000000000000000001 /* AppDelegate.swift in Sources */,
 				A10000000000000000000002 /* SceneDelegate.swift in Sources */,
-				A10000000000000000000003 /* PlaygroundViewController.swift in Sources */,
+				A10000000000000000000003 /* CatalystViewController.swift in Sources */,
 				A10000000000000000000004 /* AnimatedMeshBackdrop.swift in Sources */,
 				A10000000000000000000005 /* GlassFactory.swift in Sources */,
 				A10000000000000000000006 /* DraggableGlassBlob.swift in Sources */,
@@ -303,15 +303,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = LiquidGlassPlayground/LiquidGlassPlayground.entitlements;
+				CODE_SIGN_ENTITLEMENTS = LiquidGlassCatalyst/LiquidGlassCatalyst.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 9B3BCK2JXQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LiquidGlassPlayground/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Liquid Glass";
+				INFOPLIST_FILE = LiquidGlassCatalyst/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Liquid Glass Catalyst";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -323,7 +323,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.playground.LiquidGlass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.catalyst.LiquidGlass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -339,15 +339,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = LiquidGlassPlayground/LiquidGlassPlayground.entitlements;
+				CODE_SIGN_ENTITLEMENTS = LiquidGlassCatalyst/LiquidGlassCatalyst.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 9B3BCK2JXQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LiquidGlassPlayground/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Liquid Glass";
+				INFOPLIST_FILE = LiquidGlassCatalyst/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Liquid Glass Catalyst";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -359,7 +359,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.playground.LiquidGlass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.catalyst.LiquidGlass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -373,7 +373,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A70000000000000000000001 /* Build configuration list for PBXProject "LiquidGlassPlayground" */ = {
+		A70000000000000000000001 /* Build configuration list for PBXProject "LiquidGlassCatalyst" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A90000000000000000000001 /* Debug */,
@@ -382,7 +382,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A70000000000000000000003 /* Build configuration list for PBXNativeTarget "LiquidGlassPlayground" */ = {
+		A70000000000000000000003 /* Build configuration list for PBXNativeTarget "LiquidGlassCatalyst" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A90000000000000000000003 /* Debug */,

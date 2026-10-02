@@ -1,6 +1,6 @@
 import UIKit
 
-/// Draggable glass droplet used in the merge playground.
+/// Draggable glass droplet used in the merge catalyst.
 @available(iOS 26.0, *)
 final class DraggableGlassBlob: UIVisualEffectView {
     private let symbolView = UIImageView()

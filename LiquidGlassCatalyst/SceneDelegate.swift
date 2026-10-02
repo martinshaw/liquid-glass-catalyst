@@ -19,7 +19,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         #endif
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = PlaygroundViewController()
+        window.rootViewController = CatalystViewController()
         window.makeKeyAndVisible()
         self.window = window
     }

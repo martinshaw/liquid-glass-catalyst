@@ -1,6 +1,6 @@
 import UIKit
 
-final class PlaygroundViewController: UIViewController {
+final class CatalystViewController: UIViewController {
     private let backdrop = AnimatedMeshBackdrop()
     private let contentContainer = UIView()
     private var sidebar: UIVisualEffectView?
@@ -17,7 +17,7 @@ final class PlaygroundViewController: UIViewController {
             return [
                 ControlsFidgetDemoViewController(),
                 ButtonsDemoViewController(),
-                TintPlaygroundViewController(),
+                TintCatalystViewController(),
                 DropletMergeViewController(),
                 MaterializeDemoViewController(),
                 FloatingControlsDemoViewController()
@@ -49,14 +49,14 @@ final class PlaygroundViewController: UIViewController {
         ])
 
         if #available(iOS 26.0, *) {
-            buildPlayground()
+            buildCatalyst()
         } else {
             buildFallback()
         }
     }
 
     @available(iOS 26.0, *)
-    private func buildPlayground() {
+    private func buildCatalyst() {
         let sidebarEffect = UIGlassEffect(style: .regular)
         sidebarEffect.isInteractive = false
         let sidebarView = UIVisualEffectView(effect: sidebarEffect)
@@ -73,7 +73,7 @@ final class PlaygroundViewController: UIViewController {
 
         let brandSub = UILabel()
         brandSub.translatesAutoresizingMaskIntoConstraints = false
-        brandSub.text = "UIKit Playground"
+        brandSub.text = "UIKit Catalyst"
         brandSub.font = .systemFont(ofSize: 13, weight: .medium)
         brandSub.textColor = .secondaryLabel
 

@@ -44,7 +44,7 @@ jobs:
           elif [[ -n "${{ inputs.version }}" ]]; then
             TAG="${{ inputs.version }}"
           else
-            MARKETING=$(grep -m1 'MARKETING_VERSION' LiquidGlassPlayground.xcodeproj/project.pbxproj | sed -E 's/.*=[[:space:]]*([^;]+);/\1/' | tr -d ' "')
+            MARKETING=$(grep -m1 'MARKETING_VERSION' LiquidGlassCatalyst.xcodeproj/project.pbxproj | sed -E 's/.*=[[:space:]]*([^;]+);/\1/' | tr -d ' "')
             TAG="v${MARKETING}"
           fi
           TAG="${TAG#v}"
@@ -57,8 +57,8 @@ jobs:
         run: |
           set -euo pipefail
           xcodebuild \
-            -project LiquidGlassPlayground.xcodeproj \
-            -scheme LiquidGlassPlayground \
+            -project LiquidGlassCatalyst.xcodeproj \
+            -scheme LiquidGlassCatalyst \
             -destination 'generic/platform=macOS,variant=Mac Catalyst' \
             -configuration Release \
             -derivedDataPath DerivedData \
@@ -80,11 +80,11 @@ jobs:
           fi
           echo "Found app at $APP"
           VERSION="${{ steps.version.outputs.version }}"
-          STAGE="LiquidGlassPlayground-${VERSION}-mac"
+          STAGE="LiquidGlassCatalyst-${VERSION}-mac"
           mkdir -p dist
-          ditto "$APP" "dist/${STAGE}/LiquidGlassPlayground.app"
-          codesign --force --deep --sign - "dist/${STAGE}/LiquidGlassPlayground.app" || true
-          ditto -c -k --sequesterRsrc --keepParent "dist/${STAGE}/LiquidGlassPlayground.app" "dist/${STAGE}.zip"
+          ditto "$APP" "dist/${STAGE}/LiquidGlassCatalyst.app"
+          codesign --force --deep --sign - "dist/${STAGE}/LiquidGlassCatalyst.app" || true
+          ditto -c -k --sequesterRsrc --keepParent "dist/${STAGE}/LiquidGlassCatalyst.app" "dist/${STAGE}.zip"
           echo "zip=dist/${STAGE}.zip" >> "$GITHUB_OUTPUT"
           echo "artifact=${STAGE}.zip" >> "$GITHUB_OUTPUT"
           ls -lh "dist/${STAGE}.zip"
@@ -114,13 +114,13 @@ jobs:
           fi
 
           NOTES=$(cat <<EOF
-          ## Liquid Glass Playground ${VERSION}
+          ## Liquid Glass Catalyst ${VERSION}
 
-          Mac Catalyst build of the Liquid Glass UIKit playground.
+          Mac Catalyst build of Liquid Glass Catalyst.
 
           ### Install
-          1. Download \`LiquidGlassPlayground-${VERSION}-mac.zip\`
-          2. Unzip, then right-click **LiquidGlassPlayground.app** → **Open**
+          1. Download \`LiquidGlassCatalyst-${VERSION}-mac.zip\`
+          2. Unzip, then right-click **LiquidGlassCatalyst.app** → **Open**
           3. Approve Gatekeeper if prompted (ad-hoc signed CI build)
 
           ### Notes
@@ -133,6 +133,6 @@ jobs:
             gh release upload "$TAG" "$ZIP" --clobber
           else
             gh release create "$TAG" "$ZIP" \
-              --title "Liquid Glass Playground ${VERSION}" \
+              --title "Liquid Glass Catalyst ${VERSION}" \
               --notes "$NOTES"
           fi
