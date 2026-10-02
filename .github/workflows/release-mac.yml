@@ -1,0 +1,138 @@
+name: Release Mac App
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version tag to publish (e.g. v1.1.0). Empty = use MARKETING_VERSION from the Xcode project."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build Mac Catalyst app
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          xcodebuild -showsdks
+
+      - name: Resolve version
+        id: version
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            TAG="${GITHUB_REF_NAME}"
+          elif [[ -n "${{ inputs.version }}" ]]; then
+            TAG="${{ inputs.version }}"
+          else
+            MARKETING=$(grep -m1 'MARKETING_VERSION' LiquidGlassPlayground.xcodeproj/project.pbxproj | sed -E 's/.*=[[:space:]]*([^;]+);/\1/' | tr -d ' "')
+            TAG="v${MARKETING}"
+          fi
+          TAG="${TAG#v}"
+          TAG="v${TAG}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+          echo "Using tag $TAG"
+
+      - name: Build Mac Catalyst (Release)
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project LiquidGlassPlayground.xcodeproj \
+            -scheme LiquidGlassPlayground \
+            -destination 'generic/platform=macOS,variant=Mac Catalyst' \
+            -configuration Release \
+            -derivedDataPath DerivedData \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            DEVELOPMENT_TEAM="" \
+            ONLY_ACTIVE_ARCH=NO \
+            build
+
+      - name: Package .app
+        id: package
+        run: |
+          set -euo pipefail
+          APP=$(find DerivedData/Build/Products -path '*Release-maccatalyst/*.app' -type d | head -1)
+          if [[ -z "$APP" ]]; then
+            echo "Built .app not found under DerivedData/Build/Products"
+            find DerivedData/Build/Products -maxdepth 5 -print || true
+            exit 1
+          fi
+          echo "Found app at $APP"
+          VERSION="${{ steps.version.outputs.version }}"
+          STAGE="LiquidGlassPlayground-${VERSION}-mac"
+          mkdir -p dist
+          ditto "$APP" "dist/${STAGE}/LiquidGlassPlayground.app"
+          codesign --force --deep --sign - "dist/${STAGE}/LiquidGlassPlayground.app" || true
+          ditto -c -k --sequesterRsrc --keepParent "dist/${STAGE}/LiquidGlassPlayground.app" "dist/${STAGE}.zip"
+          echo "zip=dist/${STAGE}.zip" >> "$GITHUB_OUTPUT"
+          echo "artifact=${STAGE}.zip" >> "$GITHUB_OUTPUT"
+          ls -lh "dist/${STAGE}.zip"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.package.outputs.artifact }}
+          path: ${{ steps.package.outputs.zip }}
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.version.outputs.tag }}"
+          VERSION="${{ steps.version.outputs.version }}"
+          ZIP="${{ steps.package.outputs.zip }}"
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if ! git rev-parse "$TAG" >/dev/null 2>&1; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git tag -a "$TAG" -m "Release $TAG"
+              git push origin "$TAG"
+            fi
+          fi
+
+          NOTES=$(cat <<EOF
+          ## Liquid Glass Playground ${VERSION}
+
+          Mac Catalyst build of the Liquid Glass UIKit playground.
+
+          ### Install
+          1. Download \`LiquidGlassPlayground-${VERSION}-mac.zip\`
+          2. Unzip, then right-click **LiquidGlassPlayground.app** → **Open**
+          3. Approve Gatekeeper if prompted (ad-hoc signed CI build)
+
+          ### Notes
+          - Built for Mac Catalyst against the latest stable Xcode on GitHub Actions
+          - Liquid Glass features need a recent macOS
+          EOF
+          )
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$ZIP" --clobber
+          else
+            gh release create "$TAG" "$ZIP" \
+              --title "Liquid Glass Playground ${VERSION}" \
+              --notes "$NOTES"
+          fi
