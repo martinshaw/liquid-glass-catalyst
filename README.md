@@ -6,6 +6,10 @@ UIKit + **Mac Catalyst** playground for Apple **Liquid Glass** (`UIGlassEffect`,
 
 There is also a native AppKit attempt — **[liquid-glass-cocoa](https://github.com/martinshaw/liquid-glass-cocoa)** — but that version is **buggy and unfinished**. Prefer this Catalyst project.
 
+## About these projects
+
+Both **liquid-glass-catalyst** and **[liquid-glass-cocoa](https://github.com/martinshaw/liquid-glass-cocoa)** were built quickly with [Cursor](https://cursor.com) as lightweight sandboxes for trying out macOS design APIs — especially Liquid Glass — rather than as production apps.
+
 ## Requirements
 
 - macOS 26+ (for Liquid Glass)
